@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hockey Clock</title>
+    <style>
+        body {
+            background: transparent; /* Makes background clear */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .hockey-clock {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+        .clock-face {
+            width: 100%;
+            height: auto;
+        }
+        .clock-hand {
+            position: absolute;
+            width: 10px;
+            height: 50%;
+            left: 50%;
+            top: 50%;
+            transform-origin: bottom center;
+            transform: translateX(-50%) rotate(0deg);
+            transition: transform 1s linear;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hockey-clock">
+        <img src="YOUR_CLOCK_FACE_URL" class="clock-face">
+        <img src="YOUR_CLOCK_HAND_URL" class="clock-hand" id="clockHand">
+    </div>
+
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var seconds = now.getMinutes() * 60 + now.getSeconds(); // Total seconds into the hour
+            var degrees = (seconds / 3600) * 360; // One full rotation per hour
+
+            var hand = document.getElementById("clockHand");
+            if (hand) {
+                hand.style.transform = "translateX(-50%) rotate(" + degrees + "deg)";
+            }
+        }
+
+        setInterval(updateClock, 2000);
+        updateClock();
+    </script>
+
+</body>
+</html>
